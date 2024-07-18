@@ -11,7 +11,8 @@ RUN apt-get update && apt-get install -y \
         libonig-dev \
         zip \
         curl \
-        unzip
+        unzip \
+        && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Configure and install PHP extensions
 RUN docker-php-ext-configure gd
@@ -30,3 +31,8 @@ RUN php -r "if (hash_file('sha384', 'composer-setup.php') === '55ce33d7678c5a611
 RUN php composer-setup.php
 RUN php -r "unlink('composer-setup.php');"
 RUN mv composer.phar /usr/local/bin/composer
+
+# Create directories for phpMyAdmin
+RUN mkdir -p /var/www/phpMyAdmin/bash
+RUN touch /var/www/phpMyAdmin/bash/bash.sh
+RUN mkdir -p /var/www/phpMyAdmin/src
