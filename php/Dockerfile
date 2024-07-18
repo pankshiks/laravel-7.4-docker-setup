@@ -1,4 +1,4 @@
-FROM php:7.4.30-apache-buster
+FROM php:8.1-apache-buster
 
 WORKDIR /var/www/html
 
