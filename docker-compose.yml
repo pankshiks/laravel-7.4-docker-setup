@@ -3,6 +3,7 @@ services:
   laravelserver:
    build:
     context: ./php
+   platform: linux/amd64
    image: "laravel-image"
    restart: unless-stopped
    ports: 
